@@ -1,9 +1,11 @@
 require 'rubygems'
 require 'httparty'
 require 'json'
+require_relative 'roadmap.rb'
 
 class Kele
     include HTTParty
+    include Roadmap
 
     base_uri 'https://www.bloc.io/api/v1'
     
@@ -23,9 +25,8 @@ class Kele
     end
 
     def get_mentor_availability(id)
-        response = self.class.get("/mentors/#{id}/student_availability", headers: { "authorization" => @authorization_token }, body: { "id" => "#{id}" }, )
+        response = self.class.get("/mentors/#{id}/student_availability", headers: { "authorization" => @authorization_token }, body: { "id" => "#{id}" } )
         @availability = JSON.parse(response.body).to_a
     end
-
+    
 end
-# 2364248
