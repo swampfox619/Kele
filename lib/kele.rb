@@ -22,4 +22,10 @@ class Kele
         @current_user = JSON.parse(response.body)
     end
 
+    def get_mentor_availability(id)
+        response = self.class.get("/mentors/#{id}/student_availability", headers: { "authorization" => @authorization_token }, body: { "id" => "#{id}" }, )
+        @availability = JSON.parse(response.body).to_a
+    end
+
 end
+# 2364248
