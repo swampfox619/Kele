@@ -26,7 +26,7 @@ class Kele
 
     def get_mentor_availability(id)
         response = self.class.get("/mentors/#{id}/student_availability", headers: { "authorization" => @authorization_token }, body: { "id" => "#{id}" } )
-        @availability = JSON.parse(response.body).to_a
+        @availability = JSON.parse(response.body)
     end
     
 end
