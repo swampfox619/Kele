@@ -29,4 +29,15 @@ class Kele
         @availability = JSON.parse(response.body)
     end
     
+    def get_messages(number)
+        response = self.class.get("/message_threads", headers: { "authorization" => @authorization_token }, body: { "page" => "#{number}" } )
+        @messages = JSON.parse(response.body)    
+    end
+    
+    def create_message(subject, body)
+        self.class.post("/messages", headers: { "authorization" => @authorization_token }, body: {
+            "sender" => "lew.vine@gmail.com", "recipient_id" => 2364248, "subject" => "#{subject}", "body" => "#{body}" } )
+    end
+        
+        
 end
