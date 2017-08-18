@@ -38,6 +38,17 @@ class Kele
         self.class.post("/messages", headers: { "authorization" => @authorization_token }, body: {
             "sender" => "lew.vine@gmail.com", "recipient_id" => 2364248, "subject" => "#{subject}", "body" => "#{body}" } )
     end
-        
-        
+    
+    def update_submission(branch, link, id, comment)
+        self.class.post("/checkpoint_submissions/", 
+            headers: { "authorization" => @authorization_token}, 
+            body: {
+                "assignment_branch" => "#{branch}",
+                "assignment_commit_link" => "#{link}",
+                "checkpoint_id" => "#{id}",
+                "comment" => "#{comment}",
+                "enrollment_id" => 2372433
+            }
+        )
+    end
 end
